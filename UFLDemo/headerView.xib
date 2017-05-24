@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1421" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="headerView" customModule="UFLDemo" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="iN0-l3-epB" id="mga-Uz-Yai"/>
+                <outlet property="dateLabel" destination="HI7-UQ-5mU" id="3Vp-FJ-g5r"/>
+                <outlet property="imgView" destination="7gm-Di-jtr" id="qqt-D8-iPj"/>
+                <outlet property="leagueLabel" destination="RSS-Nr-2JA" id="WPo-ek-wD9"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="68"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SUNDAY 03 MAY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HI7-UQ-5mU">
+                    <rect key="frame" x="8" y="8" width="359" height="17"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="14"/>
+                    <color key="textColor" red="0.078431372550000003" green="0.65098039220000004" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7gm-Di-jtr">
+                    <rect key="frame" x="8" y="41" width="19" height="19"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="19" id="F85-dx-inF"/>
+                        <constraint firstAttribute="width" secondItem="7gm-Di-jtr" secondAttribute="height" multiplier="1:1" id="PNr-4m-PnF"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="La Liga" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="RSS-Nr-2JA">
+                    <rect key="frame" x="35" y="45" width="332" height="12"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="10"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XkW-AK-wua" userLabel="Separator">
+                    <rect key="frame" x="0.0" y="67" width="375" height="1"/>
+                    <color key="backgroundColor" red="0.1529411765" green="0.26274509800000001" blue="0.35686274509999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="s7g-qj-tEo"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="XkW-AK-wua" secondAttribute="trailing" id="1ed-8o-zhm"/>
+                <constraint firstItem="HI7-UQ-5mU" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="Cj7-Ab-FvW"/>
+                <constraint firstItem="7gm-Di-jtr" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="Df7-R9-J56"/>
+                <constraint firstItem="RSS-Nr-2JA" firstAttribute="trailing" secondItem="HI7-UQ-5mU" secondAttribute="trailing" id="HeL-nT-tX2"/>
+                <constraint firstAttribute="bottom" secondItem="7gm-Di-jtr" secondAttribute="bottom" constant="8" id="JJc-tq-FQU"/>
+                <constraint firstAttribute="trailing" secondItem="HI7-UQ-5mU" secondAttribute="trailing" constant="8" id="Q0X-Hn-WE9"/>
+                <constraint firstItem="RSS-Nr-2JA" firstAttribute="centerY" secondItem="7gm-Di-jtr" secondAttribute="centerY" id="Qab-IX-075"/>
+                <constraint firstItem="RSS-Nr-2JA" firstAttribute="leading" secondItem="7gm-Di-jtr" secondAttribute="trailing" constant="8" id="h4f-pC-eqa"/>
+                <constraint firstAttribute="bottom" secondItem="XkW-AK-wua" secondAttribute="bottom" id="hro-OS-glR"/>
+                <constraint firstItem="HI7-UQ-5mU" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="rQw-jN-HzQ"/>
+                <constraint firstItem="XkW-AK-wua" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="rip-Ju-iHR"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-699.5" y="-431"/>
+        </view>
+    </objects>
+</document>

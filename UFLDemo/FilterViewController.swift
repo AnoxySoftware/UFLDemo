@@ -8,20 +8,26 @@
 
 import UIKit
 
+enum FilterViewNotifications {
+    static let FilterDidChangeNotification = "FilterDidChangeNotification"
+}
+
+let FilterViewNotificationLeagueKey = "com.anoxy.leagueIdNotif"
+
 class FilterViewController: UIViewController {
     let reuseIdentifier = "leagueCell"
     
     @IBOutlet weak var collectionView: UICollectionView!
-    var leagues = [League]()
+
+    var viewModel: FilterViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        //create Mock Data
-        self.createMockData()
+        viewModel = FilterViewModel.init()
         
-        //reload CollectionView 
+        //reload collection view
         self.collectionView.reloadData()
     }
     
@@ -34,14 +40,16 @@ class FilterViewController: UIViewController {
 extension FilterViewController: UICollectionViewDataSource {
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.leagues.count
+        guard let viewModel = viewModel else { return 0 }
+        return viewModel.numberOfItemsInSection(section)
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(self.reuseIdentifier, forIndexPath: indexPath) as! LeagueCVCell
         
-        let league = leagues[indexPath.row]
-        cell.setCellData(imageName:league.imageName, label: league.name)
+        if let viewModel = viewModel {
+            cell.configure(withPresenter: viewModel.dataForIndexPath(indexPath))
+        }
         
         return cell
     }
@@ -50,41 +58,21 @@ extension FilterViewController: UICollectionViewDataSource {
 extension FilterViewController: UICollectionViewDelegate {
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        guard let viewModel = viewModel else { return }
         
-    }
-}
-
-extension FilterViewController {
-    
-    func createMockData() {
-        var league = League(name: NSLocalizedString("ALL\nLEAGUES", comment: "League Name"), imageName: "silver-icon", identifier: "All")
-        leagues.append(league)
+        //highlight the selection and fire the notification....
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! LeagueCVCell
+        cell.highLightCell()
         
-        league = League(name: NSLocalizedString("SERIE A", comment: "League Name"), imageName: "Italy-Badge", identifier: "Italy")
-        leagues.append(league)
+        let leagueId = viewModel.getLeagueIdForIndexPath(indexPath)
         
-        league = League(name: NSLocalizedString("PREMIER\nLEAGUE", comment: "League Name"), imageName: "england", identifier: "Premier")
-        leagues.append(league)
+        //we pass the league Identifier in the userInfo so we can filter out our data
+        NSNotificationCenter.defaultCenter().postNotificationName(FilterViewNotifications.FilterDidChangeNotification, object: nil, userInfo:[FilterViewNotificationLeagueKey:leagueId])
         
-        league = League(name: NSLocalizedString("LEAGUE 1", comment: "League Name"), imageName: "France-Contest", identifier: "France")
-        leagues.append(league)
-        
-        league = League(name: NSLocalizedString("SAUDI\nLEAGUE", comment: "League Name"), imageName: "saudi-contest", identifier: "Saudi")
-        leagues.append(league)
-        
-        league = League(name: NSLocalizedString("LA LIGA", comment: "League Name"), imageName: "Spain-Contest-Badge", identifier: "Spain")
-        leagues.append(league)
-        
-        league = League(name: NSLocalizedString("MLS", comment: "League Name"), imageName: "mls-contest", identifier: "USA")
-        leagues.append(league)
-        
-        league = League(name: NSLocalizedString("CHAMPIONS\nLEAGUE", comment: "League Name"), imageName: "champions-league-icon", identifier: "CHL")
-        leagues.append(league)
-        
-        league = League(name: NSLocalizedString("EUROPA\nLEAGUE", comment: "League Name"), imageName: "Europa-Contest", identifier: "Europa")
-        leagues.append(league)
-        
-        league = League(name: NSLocalizedString("EREDIVISIE", comment: "League Name"), imageName: "Dutch-contest-2", identifier: "Dutch")
-        leagues.append(league)
+        //dehighlight cell after 1 sec
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
+        dispatch_after(delayTime, dispatch_get_main_queue()) {
+            cell.deHighLightCell()
+        }
     }
 }

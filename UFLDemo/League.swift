@@ -8,7 +8,7 @@
 
 import Foundation
 
-class League: NSObject {
+class League: CustomStringConvertible,CustomDebugStringConvertible {
     
     let identifier: String
     let name: String
@@ -26,7 +26,13 @@ class League: NSObject {
         self.teams.append(team)
     }
     
-    func containsTeam(team: Team) -> Bool {
-        return self.teams.contains { $0.identifier == team.identifier }
+    //description for getting more usefull data when printing the Model
+    internal var description: String {
+        return "<League:\"\(name)\">"
+    }
+    
+    //debugDescription for getting more usefull data when using debugPrint  or po (printObject) in the console
+    internal var debugDescription: String {
+        return "<League:\(unsafeAddressOf(self)), \(name) img:\(imageName) id:\(identifier)>"
     }
 }
