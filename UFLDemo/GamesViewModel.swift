@@ -13,23 +13,6 @@ enum HeaderTypes {
     case single
 }
 
-protocol GamePresentable {
-    var homeTeam: String { get }
-    var awayTeam: String { get }
-    var homeTeamImageName: String { get }
-    var awayTeamImageName: String { get }
-    var score: String { get }
-    var gameHexColor: Int { get }
-    var gameTime: String { get }
-    var gameFinished: Bool { get }
-}
-
-protocol HeaderPresentable {
-    var dateString: String { get }
-    var leagueTitle: String { get }
-    var leagueImageName: String { get }
-}
-
 class GamesViewModel : NSObject {
 
     private class SectionInfo: CustomStringConvertible,CustomDebugStringConvertible,HeaderPresentable {
@@ -64,6 +47,9 @@ class GamesViewModel : NSObject {
     //our array holding our games list
     private var sectionData = [SectionInfo]()
     private var filteredSectionData = [SectionInfo]()
+    
+    //KVO for updating our View
+    dynamic var needsRefresh = false
     
     override init() {
         super.init()
@@ -104,6 +90,9 @@ class GamesViewModel : NSObject {
     
     //create sectionData
     private func createSectionData(games:[Game]) {
+        //clear old data (in case we refresh)
+        self.sectionData.removeAll()
+        
         //first sort games by date (asuming this won't be necessary if we get from backend sorted data)
         let games = games.sort({$0.gameDate.compare($1.gameDate) == NSComparisonResult.OrderedAscending})
         
@@ -164,6 +153,17 @@ class GamesViewModel : NSObject {
         else {
             filteredSectionData = sectionData.filter({$0.leagueId == leagueId})
         }
+        
+        //change the value so our KVO can pick it up and refresh table
+        needsRefresh = !needsRefresh
+    }
+    
+    func refreshData() {
+        let mockData = MockDataCreator()
+        createSectionData(mockData.games)
+        
+        //change the value so our KVO can pick it up and refresh table
+        needsRefresh = !needsRefresh
     }
     
     private func getFormattedDayFromDate(date:NSDate) -> String {

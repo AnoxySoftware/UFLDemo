@@ -91,10 +91,19 @@ class MockDataCreator : NSObject {
         
         let gameTypes : [GameTypes] = [.bronze,.gold,.silver]
         
-        for i in 0.stride(to:league.teams.count-1, by:2){
-            //pick 2 teams from the league
-            let homeTeam = league.teams[i]
-            let awayTeam = league.teams[i+1]
+        var leagueTeams = league.teams
+        let maxCount = (leagueTeams.count/2) - 1
+        
+        for i in 0...maxCount {
+            //pick 2 teams from the league randomly
+            let rnd1 = Int(arc4random_uniform(UInt32(leagueTeams.count)))
+            let homeTeam = leagueTeams[rnd1]
+            leagueTeams.removeAtIndex(rnd1)
+            
+            let rnd2 = Int(arc4random_uniform(UInt32(leagueTeams.count)))
+            let awayTeam = leagueTeams[rnd2]
+            leagueTeams.removeAtIndex(rnd2)
+            
             //pick random gameType
             let rand = arc4random_uniform(UInt32(gameTypes.count))
             

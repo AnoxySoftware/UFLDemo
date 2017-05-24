@@ -27,6 +27,7 @@
 		E6C80C391ED59054008E480D /* headerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6C80C381ED59053008E480D /* headerView.xib */; };
 		E6C80C3B1ED593F2008E480D /* headerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C80C3A1ED593F2008E480D /* headerView.swift */; };
 		E6C80C3D1ED5A1E2008E480D /* FilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C80C3C1ED5A1E2008E480D /* FilterViewModel.swift */; };
+		E6C80C3F1ED5B181008E480D /* GamesViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C80C3E1ED5B181008E480D /* GamesViewModelProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		E6C80C381ED59053008E480D /* headerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = headerView.xib; sourceTree = "<group>"; };
 		E6C80C3A1ED593F2008E480D /* headerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = headerView.swift; sourceTree = "<group>"; };
 		E6C80C3C1ED5A1E2008E480D /* FilterViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewModel.swift; sourceTree = "<group>"; };
+		E6C80C3E1ED5B181008E480D /* GamesViewModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamesViewModelProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,8 +126,7 @@
 				E6593B8F1ED3559E00C6ACB6 /* Team.swift */,
 				E6593B911ED3561F00C6ACB6 /* League.swift */,
 				E6593B931ED3582600C6ACB6 /* Game.swift */,
-				E60A5B841ED4542A00EC1588 /* MockDataCreator.swift */,
-				E60A5B8A1ED494EF00EC1588 /* Teams.plist */,
+				E6C80C401ED5B1AF008E480D /* MockData */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -133,6 +134,7 @@
 		E631BF7A1ED30DC300569225 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				E6C80C3E1ED5B181008E480D /* GamesViewModelProtocol.swift */,
 				E60A5B821ED42D8700EC1588 /* GamesViewModel.swift */,
 				E6C80C3C1ED5A1E2008E480D /* FilterViewModel.swift */,
 			);
@@ -163,6 +165,15 @@
 				E631BF801ED3284C00569225 /* ShadowUIView.swift */,
 			);
 			name = Subclasses;
+			sourceTree = "<group>";
+		};
+		E6C80C401ED5B1AF008E480D /* MockData */ = {
+			isa = PBXGroup;
+			children = (
+				E60A5B841ED4542A00EC1588 /* MockDataCreator.swift */,
+				E60A5B8A1ED494EF00EC1588 /* Teams.plist */,
+			);
+			name = MockData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -243,6 +254,7 @@
 			files = (
 				E631BF811ED3284C00569225 /* ShadowUIView.swift in Sources */,
 				E631BF7F1ED30E4C00569225 /* UIColor+Theme.swift in Sources */,
+				E6C80C3F1ED5B181008E480D /* GamesViewModelProtocol.swift in Sources */,
 				E6593B961ED3655F00C6ACB6 /* FilterViewController.swift in Sources */,
 				E6C80C3B1ED593F2008E480D /* headerView.swift in Sources */,
 				E60A5B7B1ED41D4A00EC1588 /* GameTVCell.swift in Sources */,

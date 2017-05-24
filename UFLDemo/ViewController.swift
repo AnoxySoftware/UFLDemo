@@ -12,7 +12,6 @@ class ViewController: UIViewController {
     
     let headerHeight : CGFloat = 70
     let reuseIdentifier = "gameCell"
-    
 
     @IBOutlet weak var filterView: UIView!
     @IBOutlet weak var filterTopConstraint: NSLayoutConstraint!
@@ -22,11 +21,21 @@ class ViewController: UIViewController {
     var viewModel: GamesViewModel?
     var filterBarVisible = false
     
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = UIColor.btnSelectedColor
+        refreshControl.addTarget(self, action: #selector(refreshData(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        return refreshControl
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         viewModel = GamesViewModel.init()
+        
+        self.tableView.addSubview(refreshControl)
         self.tableView.reloadData()
+        addKVO()
     }
 
     override func didReceiveMemoryWarning() {
@@ -44,6 +53,10 @@ class ViewController: UIViewController {
         unsubscribeFromNotifications()
     }
     
+    deinit {
+        removeKVO()
+    }
+    
     // MARK: Notifications
     private func subscribeToNotifications() {
         NSNotificationCenter.defaultCenter().addObserver(
@@ -57,21 +70,32 @@ class ViewController: UIViewController {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
-    @objc private func filterDidChangeNotification(notification: NSNotification) {
+    func filterDidChangeNotification(notification: NSNotification) {
         guard let leagueId = notification.userInfo![FilterViewNotificationLeagueKey], let viewModel = viewModel  else { return }
         //filter leagues based on the league Id
         viewModel.filterGamesWithLeagueId(leagueId as! String)
         //hide the bar
         self.toggleFilterBar(filterBtnItem)
         self.tableView.setContentOffset(CGPointZero, animated:false)
-        //reload the tableview with a simple crossfade animation
-        UIView.transitionWithView(self.tableView,
-                                  duration: 0.45,
-                                  options: .TransitionCrossDissolve,
-                                  animations: {
-                                    self.tableView.reloadData()
-                                    },
-                                  completion: nil);
+    }
+    
+    //MARK: KVO
+    private func addKVO() {
+        guard let viewModel = viewModel else {return}
+        viewModel.addObserver(self, forKeyPath: "needsRefresh", options: .New, context: nil)
+    }
+    
+    private func removeKVO() {
+        guard let viewModel = viewModel else {return}
+        viewModel.removeObserver(self, forKeyPath: "needsRefresh", context: nil)
+    }
+    
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        if keyPath == "needsRefresh" {
+            reloadDataAnimated()
+        } else {
+            super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
+        }
     }
     
     // MARK: Actions
@@ -91,6 +115,31 @@ class ViewController: UIViewController {
                                     self.view.layoutIfNeeded()
                                    },
                                    completion: nil)
+    }
+    
+    func refreshData(refreshControl: UIRefreshControl) {
+        guard let viewModel = viewModel else {return}
+        
+        //add fake 2 secs delay to simulate network fetch
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(2 * Double(NSEC_PER_SEC)))
+        dispatch_after(delayTime, dispatch_get_main_queue()) {
+            viewModel.refreshData()
+        }
+    }
+    
+    private func reloadDataAnimated() {
+        
+        if (refreshControl.refreshing) {
+            refreshControl.endRefreshing()
+        }
+        
+        UIView.transitionWithView(self.tableView,
+                                  duration: 0.45,
+                                  options: .TransitionCrossDissolve,
+                                  animations: {
+                                    self.tableView.reloadData()
+            },
+                                  completion: nil);
     }
 }
 
