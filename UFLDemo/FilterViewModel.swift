@@ -25,10 +25,9 @@ class FilterViewModel : NSObject {
     
     private var leagues = [League]()
     
-    override init() {
+    init(mockLeagues:[League]) {
         super.init()
-        let mockData = MockDataCreator()
-        leagues = mockData.leagues
+        self.leagues = mockLeagues
     }
     
     //returns the number of items in the section

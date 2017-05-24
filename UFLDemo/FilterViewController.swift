@@ -25,7 +25,8 @@ class FilterViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        viewModel = FilterViewModel.init()
+        let mockData = MockDataCreator()
+        viewModel = FilterViewModel.init(mockLeagues: mockData.leagues)
         
         //reload collection view
         self.collectionView.reloadData()

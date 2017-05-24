@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>name</key>
+		<string>SERIE A</string>
+		<key>imageName</key>
+		<string>Italy-Badge</string>
+		<key>identifier</key>
+		<string>ita</string>
+		<key>Teams</key>
+		<array>
+			<string>AC Milan</string>
+			<string>Atalanta</string>
+			<string>Juventus</string>
+			<string>Lazio</string>
+			<string>Roma</string>
+		</array>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>PREMIER LEAGUE</string>
+		<key>imageName</key>
+		<string>england</string>
+		<key>identifier</key>
+		<string>eng</string>
+		<key>Teams</key>
+		<array>
+			<string>Chelsea</string>
+			<string>Everton</string>
+			<string>Leicester</string>
+			<string>Liverpool</string>
+			<string>Manchester City</string>
+			<string>Manchester Utd</string>
+			<string>Sunderland</string>
+		</array>
+	</dict>
+</array>
+</plist>

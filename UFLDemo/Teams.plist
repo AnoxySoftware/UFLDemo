@@ -1,87 +1,158 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-	<key>euroleague</key>
-	<array>
-		<string>Eindhoven</string>
-		<string>Lazio</string>
-		<string>Lyon</string>
-		<string>Saint Etien</string>
-		<string>Atletic Bilbao</string>
-		<string>Everton</string>
-		<string>Manchester Utd</string>
-		<string>Atalanta</string>
-		<string>Twente</string>
-	</array>
-	<key>chl</key>
-	<array>
-		<string>Ajax</string>
-		<string>Juventus</string>
-		<string>Roma</string>
-		<string>Monaco</string>
-		<string>PSG</string>
-		<string>Barcelona</string>
-		<string>Real Madrid</string>
-		<string>Chelsea</string>
-		<string>Manchester City</string>
-	</array>
-	<key>saudi</key>
-	<array>
-		<string>Abha</string>
-		<string>Al Nassr</string>
-		<string>Al Taawon</string>
-		<string>Damac</string>
-	</array>
-	<key>ned</key>
-	<array>
-		<string>Ajax</string>
-		<string>Eindhoven</string>
-		<string>Groningen</string>
-		<string>Twente</string>
-		<string>Utrecht</string>
-	</array>
-	<key>mls</key>
-	<array>
-		<string>Chicago</string>
-		<string>Dallas</string>
-		<string>LA Galaxy</string>
-		<string>Orlando</string>
-		<string>Toronto</string>
-	</array>
-	<key>ita</key>
-	<array>
-		<string>AC Milan</string>
-		<string>Atalanta</string>
-		<string>Juventus</string>
-		<string>Lazio</string>
-		<string>Roma</string>
-	</array>
-	<key>fra</key>
-	<array>
-		<string>Auxerre</string>
-		<string>Lyon</string>
-		<string>Monaco</string>
-		<string>PSG</string>
-		<string>Saint Etien</string>
-	</array>
-	<key>esp</key>
-	<array>
-		<string>Athletico Madrid</string>
-		<string>Atletic Bilbao</string>
-		<string>Barcelona</string>
-		<string>La Coruna</string>
-		<string>Real Madrid</string>
-	</array>
-	<key>eng</key>
-	<array>
-		<string>Chelsea</string>
-		<string>Everton</string>
-		<string>Leicester</string>
-		<string>Liverpool</string>
-		<string>Manchester City</string>
-		<string>Manchester Utd</string>
-		<string>Sunderland</string>
-	</array>
-</dict>
+<array>
+	<dict>
+		<key>name</key>
+		<string>SERIE A</string>
+		<key>imageName</key>
+		<string>Italy-Badge</string>
+		<key>identifier</key>
+		<string>ita</string>
+		<key>Teams</key>
+		<array>
+			<string>AC Milan</string>
+			<string>Atalanta</string>
+			<string>Juventus</string>
+			<string>Lazio</string>
+			<string>Roma</string>
+		</array>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>PREMIER LEAGUE</string>
+		<key>imageName</key>
+		<string>england</string>
+		<key>identifier</key>
+		<string>eng</string>
+		<key>Teams</key>
+		<array>
+			<string>Chelsea</string>
+			<string>Everton</string>
+			<string>Leicester</string>
+			<string>Liverpool</string>
+			<string>Manchester City</string>
+			<string>Manchester Utd</string>
+			<string>Sunderland</string>
+		</array>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>LEAGUE 1</string>
+		<key>imageName</key>
+		<string>France-Contest</string>
+		<key>identifier</key>
+		<string>fra</string>
+		<key>Teams</key>
+		<array>
+			<string>Auxerre</string>
+			<string>Lyon</string>
+			<string>Monaco</string>
+			<string>PSG</string>
+			<string>Saint Etien</string>
+		</array>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>SAUDI LEAGUE</string>
+		<key>imageName</key>
+		<string>saudi-contest</string>
+		<key>identifier</key>
+		<string>saudi</string>
+		<key>Teams</key>
+		<array>
+			<string>Abha</string>
+			<string>Al Nassr</string>
+			<string>Al Taawon</string>
+			<string>Damac</string>
+		</array>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>LA LIGA</string>
+		<key>imageName</key>
+		<string>Spain-Contest-Badge</string>
+		<key>identifier</key>
+		<string>esp</string>
+		<key>Teams</key>
+		<array>
+			<string>Athletico Madrid</string>
+			<string>Atletic Bilbao</string>
+			<string>Barcelona</string>
+			<string>La Coruna</string>
+			<string>Real Madrid</string>
+		</array>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>EREDIVISIE</string>
+		<key>imageName</key>
+		<string>Dutch-contest-2</string>
+		<key>identifier</key>
+		<string>ned</string>
+		<key>Teams</key>
+		<array>
+			<string>Ajax</string>
+			<string>Eindhoven</string>
+			<string>Twente</string>
+			<string>Utrecht</string>
+			<string>Groningen</string>
+		</array>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>CHAMPIONS LEAGUE</string>
+		<key>imageName</key>
+		<string>champions-league-icon</string>
+		<key>identifier</key>
+		<string>chl</string>
+		<key>Teams</key>
+		<array>
+			<string>Monaco</string>
+			<string>PSG</string>
+			<string>Real Madrid</string>
+			<string>Barcelona</string>
+			<string>Roma</string>
+			<string>Chelsea</string>
+			<string>Manchester City</string>
+			<string>Juventus</string>
+			<string>Ajax</string>
+		</array>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>EUROPA LEAGUE</string>
+		<key>imageName</key>
+		<string>Europa-Contest</string>
+		<key>identifier</key>
+		<string>eurl</string>
+		<key>Teams</key>
+		<array>
+			<string>Lazio</string>
+			<string>Everton</string>
+			<string>Atletic Bilbao</string>
+			<string>Saint Etien</string>
+			<string>Lyon</string>
+			<string>Manchester Utd</string>
+			<string>Atalanta</string>
+			<string>Twente</string>
+		</array>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>MLS</string>
+		<key>imageName</key>
+		<string>mls-contest</string>
+		<key>identifier</key>
+		<string>mls</string>
+		<key>Teams</key>
+		<array>
+			<string>Chicago</string>
+			<string>Dallas</string>
+			<string>Orlando</string>
+			<string>Toronto</string>
+			<string>LA Galaxy</string>
+		</array>
+	</dict>
+</array>
 </plist>

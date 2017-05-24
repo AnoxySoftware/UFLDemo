@@ -31,7 +31,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        viewModel = GamesViewModel.init()
+        
+        let mockData = MockDataCreator()
+        viewModel = GamesViewModel.init(mockGames: mockData.games)
         
         self.tableView.addSubview(refreshControl)
         self.tableView.reloadData()

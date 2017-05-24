@@ -16,69 +16,41 @@ class MockDataCreator : NSObject {
     
     var leagues = [League]()
     var games = [Game]()
+    var mockDataPlist : String
     
-    override init() {
+    init(mockDataPlist:String = "Teams", bundle:NSBundle = NSBundle.mainBundle()) {
+        self.mockDataPlist = mockDataPlist
         super.init()
-        self.createMockData()
+        self.createMockData(bundle)
     }
     
-    private func createMockData() {
-        self.createLeagueMockData()        
-        self.createTeamsMockData()
-    }
-    
-    private func createLeagueMockData() {
-        
-        var league = League(name: NSLocalizedString("ALL LEAGUES", comment: "League Name"), imageName: "silver-icon", identifier: "All")
-        leagues.append(league)
-        
-        league = League(name: NSLocalizedString("SERIE A", comment: "League Name"), imageName: "Italy-Badge", identifier: "ita")
-        leagues.append(league)
-        
-        league = League(name: NSLocalizedString("PREMIER LEAGUE", comment: "League Name"), imageName: "england", identifier: "eng")
-        leagues.append(league)
-        
-        league = League(name: NSLocalizedString("LEAGUE 1", comment: "League Name"), imageName: "France-Contest", identifier: "fra")
-        leagues.append(league)
-        
-        league = League(name: NSLocalizedString("SAUDI LEAGUE", comment: "League Name"), imageName: "saudi-contest", identifier: "saudi")
-        leagues.append(league)
-        
-        league = League(name: NSLocalizedString("LA LIGA", comment: "League Name"), imageName: "Spain-Contest-Badge", identifier: "esp")
-        leagues.append(league)
-        
-        league = League(name: NSLocalizedString("MLS", comment: "League Name"), imageName: "mls-contest", identifier: "mls")
-        leagues.append(league)
-        
-        league = League(name: NSLocalizedString("CHAMPIONS LEAGUE", comment: "League Name"), imageName: "champions-league-icon", identifier: "chl")
-        leagues.append(league)
-        
-        league = League(name: NSLocalizedString("EUROPA LEAGUE", comment: "League Name"), imageName: "Europa-Contest", identifier: "euroleague")
-        leagues.append(league)
-        
-        league = League(name: NSLocalizedString("EREDIVISIE", comment: "League Name"), imageName: "Dutch-contest-2", identifier: "ned")
-        leagues.append(league)
-    }
-    
-    private func createTeamsMockData() {
+    private func createMockData(bundle:NSBundle) {
         var i = 0
         
-        if let path = NSBundle.mainBundle().pathForResource("Teams", ofType: "plist"), teamsDict = NSDictionary(contentsOfFile: path) as? [String:[String]] {
-            for (leagueId, teams) in teamsDict {
+        let league = League(name: NSLocalizedString("ALL LEAGUES", comment: "League Name"), imageName: "silver-icon", identifier: "All")
+        leagues.append(league)
+        
+        if let path = bundle.pathForResource(self.mockDataPlist, ofType: "plist"), leagueData = NSArray(contentsOfFile: path) as? [NSDictionary] {
+            for leagueDict in leagueData {
                 
-                if let league = getLeagueForIdentifier(leagueId) {
-                    
-                    for teamName in teams {
-                        let team = Team(name: teamName, imageName: teamName, identifier: leagueId+"_"+teamName.stringByReplacingOccurrencesOfString(" ", withString:""))
-                        league.addTeam(team)
-                    }
-                    
-                    let date = NSDate.init(timeIntervalSinceNow: (Double(i) * 60 * 60.0))
-                    self.createMockGamesForLeague(leagueId,date:date)
-                    
-                    //advance date to 3 hours ahead for next league
-                    i += 3
+                let leagueName = leagueDict.valueForKey("name") as! String
+                let leagueImageName = leagueDict.valueForKey("imageName") as! String
+                let leagueId = leagueDict.valueForKey("identifier") as! String
+                let teams = leagueDict.valueForKey("Teams") as! NSArray
+                
+                let league = League(name: NSLocalizedString(leagueName, comment: "League Name"), imageName: leagueImageName, identifier: leagueId)
+                leagues.append(league)
+                
+                for teamName in teams {
+                    let team = Team(name: teamName as! String, imageName: teamName as! String, identifier: leagueId+"_"+teamName.stringByReplacingOccurrencesOfString(" ", withString:""))
+                    league.addTeam(team)
                 }
+                
+                let date = NSDate.init(timeIntervalSinceNow: (Double(i) * 60 * 60.0))
+                self.createMockGamesForLeague(leagueId,date:date)
+                
+                //advance date to 3 hours ahead for next league
+                i += 3
             }
         }
     }

@@ -51,10 +51,9 @@ class GamesViewModel : NSObject {
     //KVO for updating our View
     dynamic var needsRefresh = false
     
-    override init() {
+    init(mockGames:[Game]) {
         super.init()
-        let mockData = MockDataCreator()
-        createSectionData(mockData.games)
+        createSectionData(mockGames)
     }
     
     //returns the number of sections for our TableView
