@@ -1,4 +1,4 @@
-# Todo Sample App
+# UFL Demo App
 
 [![Platform](https://img.shields.io/badge/Platform-iOS-blue.svg)](http://developer.apple.com/iOS)&nbsp;
 
