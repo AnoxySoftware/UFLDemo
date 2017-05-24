@@ -26,13 +26,14 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      codeCoverageEnabled = "YES">
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E631BF5B1ED2E3E200569225"
+               BlueprintIdentifier = "E6C80C441ED5C5AC008E480D"
                BuildableName = "UFLDemoTests.xctest"
                BlueprintName = "UFLDemoTests"
                ReferencedContainer = "container:UFLDemo.xcodeproj">

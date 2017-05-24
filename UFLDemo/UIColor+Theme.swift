@@ -26,4 +26,5 @@ extension UIColor {
     
     @nonobjc static let backgroundColor = UIColor(hex: 0x1BA3EA)
     @nonobjc static let btnSelectedColor = UIColor(hex: 0x14A6D6)
+        
 }

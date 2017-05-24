@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Team: NSObject {
+class Team: CustomStringConvertible,CustomDebugStringConvertible {
     
     let identifier: String
     let name: String
@@ -18,5 +18,15 @@ class Team: NSObject {
         self.name = name
         self.imageName = imageName
         self.identifier = identifier
+    }
+    
+    //description for getting more usefull data when printing the Model
+    internal var description: String {
+        return "<Team:\"\(name)\">"
+    }
+    
+    //debugDescription for getting more usefull data when using debugPrint  or po (printObject) in the console
+    internal var debugDescription: String {
+        return "<Team:\(unsafeAddressOf(self)), \(name) img:\(imageName) id:\(identifier)>"
     }
 }
